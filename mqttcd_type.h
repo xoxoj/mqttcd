@@ -21,7 +21,8 @@ enum mqttcd_status {
     MQTTCD_RECV_FAILED,
     MQTTCD_RECV_TIMEOUT,
     MQTTCD_PACKET_TYPE_MISMATCHED,
-    MQTTCD_FCNTL_FAILED
+    MQTTCD_FCNTL_FAILED,
+    MQTTCD_EXECUVE_FAILED
 };
 
 typedef struct _mqttcd_raw_option {

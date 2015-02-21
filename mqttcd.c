@@ -88,6 +88,15 @@ int mqttcd(mqttcd_context_t* context) {
             char* payload = NULL;
             ret = mqtt_deserialize_publish(context, buf, MQTTCD_BUFFER_LENGTH, &payload);
             if (ret == MQTTCD_SUCCEEDED && payload != NULL) {
+                // invoke payload handler
+                int pid;
+                ret = mqttcd_process_fork(&pid);
+
+                // child process
+                if (ret == MQTTCD_SUCCEEDED && pid == 0) {
+                    ret = mqttcd_process_execuve(NULL, NULL);
+                }
+
                 free(payload);
             }
         }
